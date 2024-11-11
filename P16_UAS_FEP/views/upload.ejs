@@ -1,0 +1,31 @@
+<%- include('layouts/header') %>
+<%- include('layouts/navbar') %>
+
+<h1>Upload Foto dan Caption</h1>
+
+<!-- Form untuk mengunggah foto dan caption -->
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    <label for="photo">Pilih Foto:</label>
+    <input type="file" name="photo" id="photo" required><br><br>
+
+    <label for="caption">Caption:</label>
+    <textarea name="caption" id="caption" required></textarea><br><br>
+
+    <button type="submit">Upload</button>
+</form>
+
+<!-- Menampilkan foto dan caption yang sudah diupload -->
+<% if (uploads && uploads.length > 0) { %>
+  <h2>Foto yang sudah diupload:</h2>
+  <ul>
+    <% uploads.forEach(upload => { %>
+      <li>
+        <img src="<%= upload.photo_url %>" alt="Photo" width="200"><br>
+        <strong>Caption:</strong> <%= upload.caption %>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
+</body>
+</html>
